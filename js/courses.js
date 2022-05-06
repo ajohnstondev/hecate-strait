@@ -23,7 +23,7 @@ $('.grid-builder-questions').on('click','a.minimize', function (e) {
     $(this).parents('.expended').css("display", "none");
 });
 
-$('.w-checkbox').on('click', 'input.w-checkbox-input', function(e){
+$(document).on('click', 'input.w-checkbox-input', function(e){
     var checkedbox = Array.from(document.querySelectorAll(".w-checkbox-input")).find(chbx=>chbx!=e.target&&chbx.checked);
     if(checkedbox){
         $(checkedbox).prop('checked', false);
