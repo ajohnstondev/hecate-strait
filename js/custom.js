@@ -36,6 +36,13 @@ $(document).ready(function () {
         var CredentialCounters = getCredentialCounters();
         Rerender_Crendentials_Section(CredentialCounters);
      });
+    $('#webflow_employments').on('click', 'a.delete', function(events){
+        /////////// Remove_Skills_Section()
+        $(this).parents('div').parents('div').eq(1).remove();
+        // /////////////////////////////////
+        var EmploymentCounters = getEmploymentCounters();
+        Rerender_Employments_Section(EmploymentCounters);
+     });
 
     $('#webflow_references').on('click', 'a.delete', function(events){
         /////////// Remove_Skills_Section()
