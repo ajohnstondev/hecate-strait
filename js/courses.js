@@ -7,25 +7,29 @@ $(document).ready(function () {
     });
 
 // Expended function
-    $('.grid-builder-questions').on('click', 'a.quiz', function(e){
-        $(this).parents('.collapse').siblings('.expended').css("display", "block");
-        $(this).parents('.collapse').css("display", "none");
-    });
+$('.grid-builder-questions').on('click', 'a.quiz', function(e){
+    $(".grid-builder-questions").find(".expended").css("display", "none");
+    $(".grid-builder-questions").find(".collapse").css("display", "block");
+    $(this).parents('.collapse').next('.expended').css("display", "block");
+    $(this).parents('.collapse').css("display", "none");
+});
 
 
 // Collapse function
-    $('.grid-builder-questions').on('click','a.minimize', function (e) {
-        $(this).parents('.expended').siblings('.collapse').css("display", "block");
-        $(this).parents('.expended').css("display", "none");
-    });
+$('.grid-builder-questions').on('click','a.minimize', function (e) {
+    $(".grid-builder-questions").find(".collapse").css("display", "none");
+    $(".grid-builder-questions").find(".expended").css("display", "block");
+    $(this).parents('.expended').next('.collapse').css("display", "block");
+    $(this).parents('.expended').css("display", "none");
+});
 
-    $('.answer-options').on('click', 'input.w-checkbox-input', function(e){
-        var checkedbox = Array.from(document.querySelectorAll(".w-checkbox-input")).find(chbx=>chbx!=e.target&&chbx.checked);
-        if(checkedbox){
-            $(checkedbox).prop('checked', false);
-        }
-        $(this).attr("checked",true);
-     });
+$('.w-checkbox').on('click', 'input.w-checkbox-input', function(e){
+    var checkedbox = Array.from(document.querySelectorAll(".w-checkbox-input")).find(chbx=>chbx!=e.target&&chbx.checked);
+    if(checkedbox){
+        $(checkedbox).prop('checked', false);
+    }
+    $(this).attr("checked",true);
+ });
 });
 function getQuizsCount(){
     var quizs = $(".grid-builder-questions > .collapse");
@@ -66,7 +70,7 @@ function RenderAccordianarea(quizsCount){
 
         <div id="w-node-_8db722d7-adae-2408-ef7c-7eefc014bb53-bbbe96d4" class="w-layout-grid quiz-builder-question-wrap expended" style="display:none;">
                 <div id="w-node-ef986d02-1c34-986b-3f96-b916195a7846-bbbe96d4" class="quiz-builder-question-number">
-                    <div id="w-node-ef986d02-1c34-986b-3f96-b916195a7847-bbbe96d4">Q`+ (k + 2) +`</div>
+                    <div id="w-node-ef986d02-1c34-986b-3f96-b916195a7847-bbbe96d4">Q`+ (k + 1) +`</div>
                     </div>
                     <div id="w-node-ef986d02-1c34-986b-3f96-b916195a7849-bbbe96d4" class="quiz-builder-question">
                     <label for="email-3" class="question-header">Question</label><input type="text" class="repeater-input w-input" maxlength="256" name="email-2" data-name="Email 2" placeholder="" id="email-2" required=""><label for="email-3" class="question-header">Options</label>
