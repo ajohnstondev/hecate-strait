@@ -1,125 +1,170 @@
-var Questions = [
-        {
-            question: "",
-            options: [
-                {
-                    text: "",
-                    correct: true,
-                },
-                {
-                    text: "",
-                    correct: false,
-                },
-            ],
-        }
-    ]
-$(document).ready(function(){
+$(document).ready(function () {
     $(".add-question").on('click', function () {
-        Questions = addQuestions(Questions)
-        const appendEle = render(Questions)
-        $(".grid-builder-questions").append(appendEle)
-    })
-    
-})
+      addQuizs();
+    });
 
-function addQuestions(Questions){
-    console.log('firstquestion', Questions)
-    const concat =  [
-        {
-            question: "",
-            options: [
-                {
-                    text: "",
-                    correct: true,
-                },
-                {
-                    text: "",
-                    correct: false,
-                },
-            ],
-        }
-    ]
-    const  returnQuestions = Questions.concat(concat)
-    console.log("returnQuestions", returnQuestions)
-    return returnQuestions
+    // Section Expended function
+    $('.grid-builder-questions').on('click', 'a.quiz', function(e){
+      $(this).parents('.collapse').next('.expended').css("display", "block");
+      $(this).parents('.collapse').css("display", "none");
+    });
+
+    // Section Collapsed function
+    $('.grid-builder-questions').on('click','a.minimize', function (e) {
+      const parentObj = $(this).parents('.expended');
+      parentObj.prev('.collapse').css("display", "block");
+
+      parentObj.find("input.w-checkbox-input").each(function (index) {
+        parentObj.prev('.collapse').find(".option-wrap").eq(index).toggleClass("correct", $(this).is(":checked"))
+      });
+
+      parentObj.css("display", "none");
+    });
+
+    // Both Collapse/Expend Section Deleted function at once
+    $('.grid-builder-questions').on('click','a.delete-question', function (e) {
+      var parentObj = $(this).parent();
+      parentObj.prev('.collapse').remove();
+      parentObj.remove();
+
+      $(".grid-builder-questions > .collapse").each(function (index) {
+        $(this).find(".quiz-builder-question-number").eq(0).html(`<div>Q${index + 1}</div>`)
+      });
+
+      $(".grid-builder-questions > .expended").each(function (index) {
+        $(this).find(".quiz-builder-question-number").eq(0).html(`<div>Q${index + 1}</div>`)
+      });
+    });
+
+    $(document).on('click','a.add-option', function (e) {
+      var answerOptions = $(this).prev('.answer-options');
+      const options = answerOptions.find(".option-wrap").length;
+
+      answerOptions.append(`
+        <div class="w-layout-grid option-wrap">
+          <div class="quiz-builder-question-number options">
+            <div>${String.fromCharCode(65 + options)}</div>
+          </div>
+          <div>
+            <label for="email-3" class="question-header">Option Text</label>
+            <input type="text" class="modal-input w-input" maxlength="256" name="email-2" data-name="Email 2" placeholder="" id="email-2" required="">
+          </div>
+          <div> </div>
+          <label class="w-checkbox">
+            <input type="checkbox" id="checkbox-option2" name="checkbox-option" data-name="Checkbox 4" class="w-checkbox-input">
+            <span class="quiz-builder-label w-form-label" for="checkbox-option2">Correct Answer?</span>
+          </label>
+          <a href="#" class="repeater-button delete-option w-button">
+            <span class="inline-leading-icon"><strong></strong></span>Delete Option
+          </a>
+        </div>
+      `);
+
+      const minizedOptions = $(this).parents('.quiz-builder-question-wrap.expended').prev('.collapse').find('.quiz-builder-question-minimized');
+      minizedOptions.append(`
+        <div class="w-layout-grid option-wrap">
+          <div class="quiz-builder-question-number options">
+            <div>${String.fromCharCode(65 + options)}</div>
+          </div>
+          <div>
+            <label for="email-3" class="option-header">
+
+            </label>
+          </div>
+        </div>
+      `);
+    });
+
+    $(document).on('click','a.delete-option', function (e) {
+      var parentObj = $(this).parent();
+      var parentParentObj = parentObj.parent();
+      parentObj.remove();
+
+      parentParentObj.find('.option-wrap').each(function (index) {
+        $(this).find('.quiz-builder-question-number').eq(0).html(`<div>${String.fromCharCode(65 + index)}</div>`)
+      });
+    });
+
+    //Sending form datas to endpoint via POST Request
+    $(".save-button").on('click', function(e){
+      saveAllDatas();
+    });
+});
+
+function saveAllDatas() {
+    var formData = $("#email-form").serializeArray();
+    $.ajax({
+      type: "POST",
+      url: "/ENDPOINT",
+      data: formData,
+      success: function(response) {
+        alert(response);  
+      },
+      error: function(response) {
+        console.log(response);
+      }
+    });
 }
 
-function render(questions){
-    const quizs = document.querySelectorAll('.quiz-builder-question-wrap')
-    quizs.forEach(quiz => {
-        quiz.remove()
-    })
-    console.log("questions", questions)
-    var renderedText = ''
-    questions.forEach(function (quiz,index) 
-    {
-        console.log('index', index)
-        console.log('question', quiz)
-        const answeroptions = quiz.options
-        renderedText += 
-        `<div id="w-node-_86f4356f-b9e5-12e3-8c89-35891eba50bb-bbbe96d4" class="w-layout-grid quiz-builder-question-wrap collapse"  style="display:none">
-            <div id="w-node-_58ade7b9-d8a5-4d37-1e12-a57e681ea8b9-bbbe96d4" class="quiz-builder-question-number">
-                        <div id="w-node-_121a5b3b-c8da-277a-bf3d-8cbd696ba5e3-bbbe96d4">Q`+ (index + 1) +`</div>
-                        </div>
+function addQuizs() {
+  var quizs = $(".grid-builder-questions > .collapse").length + 1;
+  var appendFile = '';
+  appendFile += `
+    <div class="w-layout-grid quiz-builder-question-wrap collapse" style="display: none;">
+      <div class="quiz-builder-question-number">
+        <div>Q${quizs}</div>
+      </div>
+      <div class="quiz-builder-question-minimized">
+        <label for="email-2" class="question-header">What is the answer to this question?</label>
+        <div class="w-layout-grid option-wrap">
+          <div class="quiz-builder-question-number options">
+            <div>A</div>
+          </div>
+          <div>
+            <label for="email-3" class="option-header">Answer One</label>
+          </div>
+        </div>
+      </div>
+      <a href="#" class="button dashboard-body modal-button quiz w-button">
+        <span class="inline-leading-icon"></span>Expand Question
+      </a>
+    </div>
 
-                        <div id="w-node-_8db722d7-adae-2408-ef7c-7eefc014bb53-bbbe96d4" class="quiz-builder-question-minimized">
-                            <label for="email-2" class="question-header">`+ quiz.question+`</label>
-                            <div class="w-layout-grid option-wrap">
-                                <div id="w-node-_036cd5dc-fafd-9056-f6c4-dd5c61f32c0a-bbbe96d4" class="quiz-builder-question-number options">
-                                    <div id="w-node-_036cd5dc-fafd-9056-f6c4-dd5c61f32c0b-bbbe96d4">A</div>
-                                </div>
-                                <div id="w-node-dc93aed9-81b2-bd7a-82b0-932a4e8e658b-bbbe96d4">
-                                    <label for="email-3" class="option-header">Answer One</label>
-                                </div>
-                            </div>
-                            <div class="w-layout-grid option-wrap correct">
-                                <div id="w-node-b5d1ecc7-5fa8-5ae1-28b5-1d601802c6df-bbbe96d4" class="quiz-builder-question-number options">
-                                    <div id="w-node-b5d1ecc7-5fa8-5ae1-28b5-1d601802c6e0-bbbe96d4">B</div>
-                                </div>
-                                <div id="w-node-b5d1ecc7-5fa8-5ae1-28b5-1d601802c6e2-bbbe96d4">
-                                    <label for="email-3" class="option-header">Answer Two</label>
-                                </div>
-                            </div>
-                        </div>
-                        <a id="w-node-_155079ec-3884-ea4d-8d0a-2387b9881bdb-bbbe96d4" href="#" class="button dashboard-body modal-button quiz w-button"><span class="inline-leading-icon"></span>Expand Question</a>
-                    </div>
+    <div class="w-layout-grid quiz-builder-question-wrap expended" style="display: block;">
+      <div class="quiz-builder-question-number">
+        <div>Q${quizs}</div>
+      </div>
+      <div class="quiz-builder-question">
+        <label for="email-3" class="question-header">Question</label>
+        <input type="text" class="repeater-input w-input" maxlength="256" name="email-2" data-name="Email 2" placeholder="" id="email-2" required="">
+        <label for="email-3" class="question-header">Options</label>
+        <div class="answer-options">
+          <div class="w-layout-grid option-wrap">
+            <div class="quiz-builder-question-number options">
+              <div>A</div>
+            </div>
+            <div>
+              <label for="email-3" class="question-header">Option Text</label>
+              <input type="text" class="modal-input w-input" maxlength="256" name="email-2" data-name="Email 2" placeholder="" id="email-2" required="">
+            </div>
+            <div></div>
+            <label class="w-checkbox">
+              <input type="checkbox" id="checkbox-option1" name="checkbox-option" data-name="Checkbox 4" class="w-checkbox-input">
+              <span class="quiz-builder-label w-form-label" for="checkbox-4">Correct Answer?</span>
+            </label>
+          </div>
+        </div>
+        <a href="#" class="repeater-button add-option w-button">
+          <span class="inline-leading-icon"><strong></strong></span>Add Option
+        </a>
+      </div>
+      <a href="#" class="repeater-button minimize w-button">
+        <span class="inline-leading-icon"><strong></strong></span>Minimize Question
+      </a>
+      <a href="#" class="repeater-button delete-question w-button">
+        <span class="inline-leading-icon"><strong></strong></span>Delete Question
+      </a>
+    </div>`;
 
-                <div id="w-node-_8db722d7-adae-2408-ef7c-7eefc014bb53-bbbe96d4" class="w-layout-grid quiz-builder-question-wrap expended">
-                        <div id="w-node-ef986d02-1c34-986b-3f96-b916195a7846-bbbe96d4" class="quiz-builder-question-number">
-                        <div id="w-node-ef986d02-1c34-986b-3f96-b916195a7847-bbbe96d4">Q`+ (index + 1) +`</div>
-                        </div>
-                        <div id="w-node-ef986d02-1c34-986b-3f96-b916195a7849-bbbe96d4" class="quiz-builder-question">
-                        <label for="email-3" class="question-header">`+ quiz.question+`</label>
-                        <input type="text" class="repeater-input w-input" maxlength="256" name="email-2" data-name="Email 2" placeholder="" id="email-2" required="">
-                        <label for="email-3" class="question-header">Options</label>
-                            <div id="w-node-b91fbb19-bd92-b7e7-4916-f75eb41e806d-bbbe96d4" class="answer-options">`
-                            answeroptions.forEach(function (option,ind) 
-                            {
-                                renderedText += 
-                                `<div class="w-layout-grid option-wrap">
-                                    <div id="w-node-ef986d02-1c34-986b-3f96-b916195a7853-bbbe96d4" class="quiz-builder-question-number options">
-                                        <div id="w-node-ef986d02-1c34-986b-3f96-b916195a7854-bbbe96d4">` + String.fromCharCode(65 + ind) +`</div>
-                                    </div>
-                                    <div id="w-node-ef986d02-1c34-986b-3f96-b916195a7856-bbbe96d4">
-                                        <label for="email-3" class="question-header"> Option Text</label>
-                                        <input type="text" class="modal-input w-input" maxlength="256" name="email-2" data-name="Email 2" placeholder="" id="email-2" required="" value=`+ option.text +`>
-                                    </div>
-                                    <div id="w-node-ef986d02-1c34-986b-3f96-b916195a785a-bbbe96d4"> </div>
-                                    <label id="w-node-ef986d02-1c34-986b-3f96-b916195a785c-bbbe96d4" class="w-checkbox">
-                                        <input type="checkbox" id="checkbox-4" name="checkbox-4" data-name="Checkbox 4" class="w-checkbox-input"  value=` + option.correct+`>
-                                        <span class="quiz-builder-label w-form-label" for="checkbox-4">Correct Answer?</span>
-                                    </label>
-                                </div>
-                                <a id="w-node-ef986d02-1c34-986b-3f96-b916195a7886-bbbe96d4" href="#" class="repeater-button add-option w-button"><span class="inline-leading-icon"><strong></strong></span>Add Option</a>
-                                  </div>
-                                  <a id="w-node-_0c2c5ac6-42eb-c16d-6c8b-ce5f5e9d9879-bbbe96d4" href="#" class="repeater-button minimize w-button"><span class="inline-leading-icon"><strong></strong></span>Minimize Question</a>
-                                  <a id="w-node-_8e196735-a74d-dcac-a62a-efc1c3fe9224-bbbe96d4" href="#" class="repeater-button delete-question w-button"><span class="inline-leading-icon"><strong></strong></span>Delete Question</a>`
-                            })
-                    
-                            
-                            
-                renderedText += `</div>`
-    })
-
-    return renderedText
+  $(".grid-builder-questions").append(appendFile);
 }
