@@ -67,18 +67,17 @@
       <p class="paragraph-5">You can come back and change these answers at any time.</p>
       <div class="w-form">
         <form id="email-form" name="email-form" data-name="Email Form" method="get" class="form-2">
-          <h3 class="heading-19">Contact Information</h3><label for="Full-Name" class="modal-input-label">Full
-            Name</label><input type="text" class="modal-input w-input" maxlength="256" name="Full-Name"
-            data-name="Full Name" placeholder="" id="Full-Name"><label for="Phone" class="modal-input-label">Phone
-            Number</label><input type="tel" class="modal-input w-input" maxlength="256" name="Phone" data-name="Phone"
-            placeholder="" id="Phone" required=""><label for="Address" class="modal-input-label">Address</label><input
-            type="text" class="modal-input w-input" maxlength="256" name="Address" data-name="Address" placeholder=""
-            id="Address" required="">
+          <h3 class="heading-19">Contact Information</h3>
+          <label for="Full-Name" class="modal-input-label">Full Name</label>
+          <input type="text" class="modal-input w-input" maxlength="256" name="Full-Name" data-name="Full Name" placeholder="" id="Full-Name">
+          <label for="Phone" class="modal-input-label">Phone Number</label>
+          <input type="tel" class="modal-input w-input" maxlength="256" name="Phone" data-name="Phone" placeholder="" id="Phone" required="">
+          <label for="Address" class="modal-input-label">Address</label>
+          <input type="text" class="modal-input w-input" maxlength="256" name="Address" data-name="Address" placeholder="" id="Address" required="">
           <div class="form-spacer"></div>
           <h3 class="heading-19">Professional Summary</h3>
-          <p class="paragraph-5">Summarize your resume in 1-2 sentences. Be sure to highlight your most important
-            certifications, skills, credentials and other points.</p><textarea placeholder="Example Text"
-            maxlength="5000" id="field" name="field" data-name="field" class="modal-input w-input"></textarea>
+          <p class="paragraph-5">Summarize your resume in 1-2 sentences. Be sure to highlight your most important certifications, skills, credentials and other points.</p>
+          <textarea placeholder="Example Text" maxlength="5000" id="field" name="field" data-name="field" class="modal-input w-input"></textarea>
           <div class="form-spacer"></div>
           <div id="webflow_skills_section">
           <div class="profile-add-wrap" id="webflow_skills">
@@ -90,7 +89,7 @@
                           <div id="w-node-d37d29a3-5d3b-a003-ff40-6e0b9eefb93f-25be96d7">1</div>
                       </div>
                       <div id="w-node-d37d29a3-5d3b-a003-ff40-6e0b9eefb941-25be96d7" class="quiz-builder-question">
-                          <input type="text" class="modal-input w-input" maxlength="256" name="Skill" data-name="Skill" placeholder="" id="Skill">
+                          <input type="text" class="modal-input w-input" maxlength="256" name="Skill[]" data-name="Skill" placeholder="" id="Skill">
                       </div>
                   </div>
               </div>
@@ -111,13 +110,11 @@
                       <div id="w-node-fd5f3992-2c7f-76a2-4117-70a223359db6-25be96d7" class="profile-add-row-column">
                         <div id="w-node-fd5f3992-2c7f-76a2-4117-70a223359db7-25be96d7">1</div>
                       </div>
-                      <div id="w-node-fd5f3992-2c7f-76a2-4117-70a223359db9-25be96d7" class="quiz-builder-question"><label
-                          for="Education-Credential" class="modal-input-label-copy">Credential</label><input type="text"
-                          class="modal-input w-input" maxlength="256" name="Education-Credential"
-                          data-name="Education Credential" placeholder="" id="Education-Credential"><label
-                          for="Education-Issuer" class="modal-input-label">Issuer</label><input type="text"
-                          class="modal-input w-input" maxlength="256" name="Education-Issuer" data-name="Education Issuer"
-                          placeholder="" id="Education-Issuer">
+                      <div id="w-node-fd5f3992-2c7f-76a2-4117-70a223359db9-25be96d7" class="quiz-builder-question">
+                        <label for="Education-Credential" class="modal-input-label-copy">Credential</label>
+                        <input type="text" class="modal-input w-input" maxlength="256" name="Education-Credential[]" data-name="Education Credential" placeholder="" id="Education-Credential">
+                        <label for="Education-Issuer" class="modal-input-label">Issuer</label>
+                        <input type="text" class="modal-input w-input" maxlength="256" name="Education-Issuer[]" data-name="Education Issuer" placeholder="" id="Education-Issuer">
                       </div>
                   </div>
               </div>
@@ -129,67 +126,65 @@
           <div class="form-spacer"></div>
 
           <div id="webflow_employments_section">
-          <div class="profile-add-wrap" id="webflow_employments">
-              <h3 class="heading-19">Work History</h3>
-              <p class="paragraph-5">You may add up to 4 recent employers.</p>
-              <div class="w-layout-grid profile-add">
-                  <div id="w-node-b23da42d-bbee-cce0-8a20-97c43f455e57-25be96d7" class="w-layout-grid profile-add-row">
-                    <div id="w-node-b23da42d-bbee-cce0-8a20-97c43f455e58-25be96d7" class="profile-add-row-column">
-                      <div id="w-node-b23da42d-bbee-cce0-8a20-97c43f455e59-25be96d7">1</div>
-                    </div>
-                    <div id="w-node-b23da42d-bbee-cce0-8a20-97c43f455e5b-25be96d7" class="quiz-builder-question"><label
-                        for="Employer-Name-2" class="modal-input-label-copy">Employer</label><input type="text"
-                        class="modal-input w-input" maxlength="256" name="Employer-Name" data-name="Employer Name"
-                        placeholder="" id="Employer-Name-2"><label for="Employment-Position"
-                        class="modal-input-label">Position</label><input type="text" class="modal-input w-input"
-                        maxlength="256" name="Employment-Position" data-name="Employment Position" placeholder=""
-                        id="Employment-Position"><label for="Address-2" class="modal-input-label">Start Date</label>
-                      <div class="html-embed-3 w-embed"><input type="datetime-local" id="meeting-time" name="meeting-time"
-                          value="2022-01-01T00:00" min="2022-01-01T00:00" class="modal-input"></div><label for="Address-2"
-                        class="modal-input-label">End Date</label>
-                      <div class="html-embed-3 w-embed"><input type="datetime-local" id="meeting-time" name="meeting-time"
-                          value="2022-01-01T00:00" min="2022-01-01T00:00" class="modal-input">
-                        <input type="checkbox"> Current
-                      </div><label for="Address-2" class="modal-input-label">Address</label><input type="text"
-                        class="modal-input w-input" maxlength="256" name="Address" data-name="Address" placeholder=""
-                        id="Address-2">
-                    </div>
-                  </div>
-              </div>
-            </div>
-            <a id="w-node-b23da42d-bbee-cce0-8a20-97c43f455e67-25be96d7" href="#"
-              class="button dashboard-body modal-button quiz w-button"><span
-                class="inline-leading-icon"><strong></strong></span>Add Employment</a>
-              </div>
-          <div class="form-spacer"></div>
-          <div id="webflow_references_section">
-          <div class="profile-add-wrap" id="webflow_references">
-            <h3 class="heading-19">References</h3>
-            <p class="paragraph-5">You may add up to 4 references.</p>
-            <div class="w-layout-grid profile-add">
-                <div id="w-node-a0048bd4-ca10-ef28-8f09-a607ee6ac143-25be96d7" class="w-layout-grid profile-add-row">
-                    <div id="w-node-a0048bd4-ca10-ef28-8f09-a607ee6ac144-25be96d7" class="profile-add-row-column">
-                      <div id="w-node-a0048bd4-ca10-ef28-8f09-a607ee6ac145-25be96d7">1</div>
-                    </div>
-                    <div id="w-node-a0048bd4-ca10-ef28-8f09-a607ee6ac147-25be96d7" class="quiz-builder-question"><label
-                        for="Employer-Name-3" class="modal-input-label-copy">Full Name</label><input type="text"
-                        class="modal-input w-input" maxlength="256" name="Employer-Name-3" data-name="Employer Name 3"
-                        placeholder="" id="Employer-Name-3"><label for="Employment-Position-2"
-                        class="modal-input-label">Relationship</label><input type="text" class="modal-input w-input"
-                        maxlength="256" name="Employment-Position-2" data-name="Employment Position 2" placeholder=""
-                        id="Employment-Position-2"><label for="Employment-Position-3" class="modal-input-label">Phone
-                        Number</label><input type="text" class="modal-input w-input" maxlength="256"
-                        name="Employment-Position-2" data-name="Employment Position 2" placeholder=""
-                        id="Employment-Position-2">
+            <div class="profile-add-wrap" id="webflow_employments">
+                <h3 class="heading-19">Work History</h3>
+                <p class="paragraph-5">You may add up to 4 recent employers.</p>
+                <div class="w-layout-grid profile-add">
+                    <div id="w-node-b23da42d-bbee-cce0-8a20-97c43f455e57-25be96d7" class="w-layout-grid profile-add-row">
+                      <div id="w-node-b23da42d-bbee-cce0-8a20-97c43f455e58-25be96d7" class="profile-add-row-column">
+                        <div id="w-node-b23da42d-bbee-cce0-8a20-97c43f455e59-25be96d7">1</div>
+                      </div>
+                      <div id="w-node-b23da42d-bbee-cce0-8a20-97c43f455e5b-25be96d7" class="quiz-builder-question">
+                        <label for="Employer-Name-2" class="modal-input-label-copy">Employer</label>
+                        <input type="text" class="modal-input w-input" maxlength="256" name="Employer-Name[]" data-name="Employer Name" placeholder="" id="Employer-Name-2">
+                        <label for="Employment-Position" class="modal-input-label">Position</label>
+                        <input type="text" class="modal-input w-input" maxlength="256" name="Employment-Position[]" data-name="Employment Position" placeholder="" id="Employment-Position">
+                        <label for="Address-2" class="modal-input-label">Start Date</label>
+                        <div class="html-embed-3 w-embed">
+                            <input type="datetime-local" id="meeting-time" name="meeting-time-start[]" value="2022-01-01T00:00" min="2022-01-01T00:00" class="modal-input">
+                        </div>
+                        <label for="Address-2" class="modal-input-label">End Date</label>
+                        <div class="html-embed-3 w-embed">
+                            <input type="datetime-local" id="meeting-time" name="meeting-time-end[]" value="2022-01-01T00:00" min="2022-01-01T00:00" class="modal-input">
+                            <input type="checkbox"> Current
+                        </div>
+                        <label for="Address-2" class="modal-input-label">Address</label>
+                        <input type="text" class="modal-input w-input" maxlength="256" name="Address[]" data-name="Address" placeholder="" id="Address-2">
+                      </div>
                     </div>
                 </div>
             </div>
+            <a id="w-node-b23da42d-bbee-cce0-8a20-97c43f455e67-25be96d7" href="#" class="button dashboard-body modal-button quiz w-button">
+              <span class="inline-leading-icon"><strong></strong></span>Add Employment
+            </a>
           </div>
-          <a id="w-node-a0048bd4-ca10-ef28-8f09-a607ee6ac15c-25be96d7" href="#"
-            class="button dashboard-body modal-button quiz w-button"><span
-              class="inline-leading-icon"><strong></strong></span>Add Reference</a>
+
+          <div class="form-spacer"></div>
+            <div id="webflow_references_section">
+                <div class="profile-add-wrap" id="webflow_references">
+                  <h3 class="heading-19">References</h3>
+                  <p class="paragraph-5">You may add up to 4 references.</p>
+                  <div class="w-layout-grid profile-add">
+                      <div id="w-node-a0048bd4-ca10-ef28-8f09-a607ee6ac143-25be96d7" class="w-layout-grid profile-add-row">
+                          <div id="w-node-a0048bd4-ca10-ef28-8f09-a607ee6ac144-25be96d7" class="profile-add-row-column">
+                            <div id="w-node-a0048bd4-ca10-ef28-8f09-a607ee6ac145-25be96d7">1</div>
+                          </div>
+                          <div id="w-node-a0048bd4-ca10-ef28-8f09-a607ee6ac147-25be96d7" class="quiz-builder-question">
+                              <label for="Employer-Name-3" class="modal-input-label-copy">Full Name</label>
+                              <input type="text" class="modal-input w-input" maxlength="256" name="Employer-Name-3[]" data-name="Employer Name 3" placeholder="" id="Employer-Name-3">
+                              <label for="Employment-Position-2" class="modal-input-label">Relationship</label>
+                              <input type="text" class="modal-input w-input" maxlength="256" name="Employment-Position-2[]" data-name="Employment Position 2" placeholder="" id="Employment-Position-2">
+                              <label for="Employment-Position-3" class="modal-input-label">Phone Number</label>
+                              <input type="text" class="modal-input w-input" maxlength="256" name="Employment-Position-2[]" data-name="Employment Position 2" placeholder="" id="Employment-Position-2">
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                <a id="w-node-a0048bd4-ca10-ef28-8f09-a607ee6ac15c-25be96d7" href="#" class="button dashboard-body modal-button quiz w-button">
+                  <span class="inline-leading-icon"><strong></strong></span>Add Reference
+                </a>
             </div>
-          <div class="end-form"></div>
+        <div class="end-form"></div>
         </form>
         <div class="w-form-done">
           <div>Thank you! Your submission has been received!</div>
@@ -198,7 +193,7 @@
           <div>Oops! Something went wrong while submitting the form.</div>
         </div>
       </div>
-      <a href="user-profile.html" class="button welcome-buttons w-button">Save &amp; Close</a>
+      <a href="" class="button welcome-buttons w-button">Save &amp; Close</a>
     </div>
   </div>
   <footer id="footer" class="footer wf-section">

@@ -1,0 +1,52 @@
+var items = [
+    [
+        ['firstName', 'Joe'
+        ],
+        ['lastName', 'Blow'
+        ],
+        ['age',
+            42
+        ],
+        ['role', 'clerk'
+        ]
+    ],
+    [
+        ['firstName', 'Mary'
+        ],
+        ['lastName', 'Jenkins'
+        ],
+        ['age',
+            36
+        ],
+        ['role', 'manager'
+        ]
+    ]
+];
+
+var result = [];
+// first loop through items
+items.forEach(function(item)
+{
+   var obj = {};
+   // then loop through properties
+   item.forEach(function (value)
+   {
+        // then set property and value
+      obj[value[
+                0
+            ]
+        ] = value[
+            1
+        ];
+    });
+
+   // once all is done push the object
+   result.push(obj);
+});
+
+var gethtml ='';
+$('.nav li').each(function(){
+    var img_link = $(this).attr('data-menu');
+    gethtml += '<img src="'+img_link+'">';
+});
+$('.main-img').html(gethtml);
